@@ -1,5 +1,6 @@
 package com.example.board.entity;
 
+import com.example.board.dto.BoardDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,4 +28,15 @@ public class BoardEntity extends BaseEntity { // 상속 받아서 시간 관련 
 
     @Column
     private int boardHits;
+
+    public static BoardEntity toSaveEntity(BoardDTO boardDTO) {
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
+        boardEntity.setBoardPass(boardDTO.getBoardPass());
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardHits(0);
+        boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+
+        return boardEntity;
+    }
 }
